@@ -1,2 +1,32 @@
 # QuatroDigital
 Utilizando a API Flickr
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        function flickr(user) {
+            $.getJSON('http://api.flickr.com/services/feeds/photos_public.gne?id=' + user + '&format=json&jsoncallback=?', function(data) {
+                for (i = 0; i < 6; i++) {
+                    $("<br><img />").attr("src", data.items[i].media.m).appendTo("#flickr").wrap("<a href='" + data.items[i].link + "' title='" + data.items[i].title + "' target='_blank'><\/a>");
+                }
+            });
+        }
+        $(document).ready(function() {
+            flickr('68288353@N03');
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Fotos Ginebra, Suiza</h1>
+    <div id="flickr"></div>
+</body>
+
+</html>
